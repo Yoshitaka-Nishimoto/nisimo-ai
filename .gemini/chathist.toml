@@ -1,0 +1,10 @@
+# This is a sample chat history file.
+# It is used to store the chat history of the user.
+
+[[history]]
+role = "user"
+content = "こんにちは"
+
+[[history]]
+role = "model"
+content = "こんにちは！何かお手伝いできることはありますか？"

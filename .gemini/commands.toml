@@ -1,0 +1,51 @@
+# Gemini CLI 用カスタムコマンドのサンプル
+# プロジェクトまたはユーザーの設定として使えます。
+title = "Gemini Custom Commands"
+version = "1.0"
+
+[defaults]
+# コマンド実行時のデフォルト作業ディレクトリ
+cwd = "."
+# 実行に使うシェル（必要なら指定）
+shell = "/bin/bash"
+
+# コマンド定義の配列（複数コマンドを定義できます）
+[[commands]]
+id = "build"
+label = "Build assets"
+description = "フロントエンドのビルドを実行します"
+exec = "npm run build"
+
+[[commands]]
+id = "serve"
+label = "Serve locally"
+description = "開発サーバーを起動します"
+exec = "npm run dev"
+env = { PORT = "3000" }
+
+[[commands]]
+id = "chat-history"
+label = "Start Gemini Chat (with history)"
+description = "ユーザーのチャット履歴を指定して Gemini を起動します"
+exec = "gemini chat --history ~/.gemini/chathist.toml"
+confirm = true
+
+[[commands]]
+id = "deploy"
+label = "Deploy"
+description = "環境を指定してデプロイします（引数あり）"
+# スクリプト側で引数を受け取る想定: scripts/deploy.sh <env>
+exec = "scripts/deploy.sh"
+args = ["staging", "production"]
+confirm = true
+
+[[commands]]
+id = "chathist"
+label = "チャット履歴をObsidian向けMarkdownにエクスポート"
+description = "`~/.gemini/chathist.toml` の内容を `/home/nimo/pinpon/Untitle-1.md` にコピーします。Markdownへの変換は手動で行う必要があります。"
+exec = "cat ~/.gemini/chathist.toml > /home/nimo/pinpon/Untitle-1.md && echo '履歴がUntitle-1.mdに出力されました。ただし、Markdown変換は手動で行う必要があります。'"
+confirm = true
+
+# ユーザー設定とプロジェクト設定の使い分け例:
+# - ユーザー個人の設定: $XDG_CONFIG_HOME/gemini/commands.toml
+# - プロジェクト共有設定: ./.gemini/commands.toml（このファイル）
