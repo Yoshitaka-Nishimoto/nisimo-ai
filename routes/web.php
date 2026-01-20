@@ -4,10 +4,15 @@ use App\Http\Controllers\LineLoginController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
+use App\Livewire\MemberRegistration;
+use App\Livewire\MemberList;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/register', MemberRegistration::class)->name('member.register');
+Route::get('/members', MemberList::class)->name('member.list');
 
 Route::get('/auth/line/redirect', [LineLoginController::class, 'redirectToLine'])->name('line.login');
 Route::get('/login/line/callback/', [LineLoginController::class, 'handleLineCallback']);
@@ -33,6 +38,4 @@ Route::middleware(['auth'])->group(function () {
             ),
         )
         ->name('two-factor.show');
-
-    Volt::route('member-registration', 'member-registration')->name('member-registration');
 });

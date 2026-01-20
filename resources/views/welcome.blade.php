@@ -36,7 +36,7 @@
                             href="{{ route('login') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
                         >
-                            Log in 
+                            Log in
                         </a>
 
                         <a
@@ -44,6 +44,20 @@
                             class="inline-block px-5 py-1.5 bg-[#06C755] text-white rounded-sm text-sm leading-normal"
                         >
                             LINEでログイン
+                        </a>
+
+                        <a
+                            href="{{ route('member.register') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        >
+                            会員登録
+                        </a>
+
+                        <a
+                            href="{{ route('member.list') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        >
+                            会員一覧
                         </a>
 
                         @if (Route::has('register'))

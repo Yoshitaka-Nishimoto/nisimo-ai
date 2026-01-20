@@ -2,50 +2,41 @@
 
 namespace App\Livewire;
 
-use App\Models\User; // Userモデルをインポート
+use App\Models\Member;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth; // Authファサードをインポート
 
 class MemberRegistration extends Component
 {
-    public $name;
-    public $email;
-    public $level;
+    public string $name = '';
+    public string $rank = '';
+    public string $rubber = '';
+    public string $style = '';
 
-    public function mount()
+    protected $rules = [
+        'name' => 'required|string|max:255',
+        'rank' => 'required|string|in:初級,中級,上級',
+        'rubber' => 'required|string|max:255',
+        'style' => 'required|string|max:255',
+    ];
+
+    public function save()
     {
-        $user = Auth::user();
-        //dump($user);
-        if ($user->name) {
-            $this->name = $user->name;
-            dump($this->name);
-        } else {
-            $this->name = ''; // Lineニックネームがない場合は空文字列を設定
-        }
+        $this->validate();
 
-        if ($user && $user->email) {
-            $this->email = $user->email;
-        } else {
-            $this->email = '';
-        }
+        Member::create([
+            'name' => $this->name,
+            'rank' => $this->rank,
+            'rubber' => $this->rubber,
+            'style' => $this->style,
+        ]);
+
+        session()->flash('message', '会員登録が完了しました。');
+
+        $this->reset();
     }
     
     public function render()
     {
         return view('livewire.member-registration');
-    }
-
-    public function register()
-    {
-        $this->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'level' => 'required|string',
-        ]);
-
-        // ユーザー登録ロジック
-        // 例: $user = User::create([...]);
-
-        session()->flash('message', 'Registration successful!');
     }
 }

@@ -14,7 +14,7 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="home" :href="route('member-registration')" :current="request()->routeIs('member-registration')" wire:navigate>{{ __('会員登録') }}</flux:navlist.item>
+                    <flux:navlist.item icon="home" :href="route('member.register')" :current="request()->routeIs('member.register')" wire:navigate>{{ __('会員登録') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -30,6 +30,7 @@
                 </flux:navlist.item>
             </flux:navlist>
 
+            @auth
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
                 <flux:profile
@@ -75,8 +76,10 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            @endauth
         </flux:sidebar>
 
+        @auth
         <!-- Mobile User Menu -->
         <flux:header class="lg:hidden">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
@@ -126,6 +129,7 @@
                 </flux:menu>
             </flux:dropdown>
         </flux:header>
+        @endauth
 
         {{ $slot }}
 
