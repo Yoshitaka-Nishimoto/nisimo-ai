@@ -37,6 +37,7 @@ class MemberRegistration extends Component
     
     public function render()
     {
-        return view('livewire.member-registration');
+        return view('livewire.member-registration')
+            ->layout('components.layouts.app');
     }
 }

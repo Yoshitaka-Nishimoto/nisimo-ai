@@ -34,6 +34,6 @@ class MemberList extends Component
 
         return view('livewire.member-list', [
             'members' => $members,
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

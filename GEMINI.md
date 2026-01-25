@@ -8,5 +8,7 @@
 ## line loginによる、認証の簡便化にsslが必要で、ngrok hhtp 80 で対応中
 # laravel12の技術検索　laravel boostを使用すること。参考 https://github.com/laravel/boost
 # ソース管理 gitHub https://github.com/Yoshitaka-Nishimoto にコミットしている。
-
+# laravel12に関することは、参考サイト：https://laravel.com/docs/12.x
+ を参照してください。
+# 
 
