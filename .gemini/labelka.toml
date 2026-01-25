@@ -1,0 +1,39 @@
+# Gemini CLI 用カスタムコマンドのサンプル（ファイル名: labelka.toml）
+title = "Gemini Custom Commands"
+version = "1.0"
+
+[defaults]
+cwd = "."
+shell = "/bin/bash"
+
+[[commands]]
+id = "build"
+label = "Build assets"
+description = "フロントエンドのビルドを実行します"
+exec = "npm run build"
+
+[[commands]]
+id = "serve"
+label = "Serve locally"
+description = "開発サーバーを起動します"
+exec = "npm run dev"
+env = { PORT = "3000" }
+
+[[commands]]
+id = "chat-history"
+label = "Start Gemini Chat (with history)"
+description = "ユーザーのチャット履歴を指定して Gemini を起動します"
+exec = "gemini chat --history ~/.gemini/chathist.toml"
+confirm = true
+
+[[commands]]
+id = "deploy"
+label = "Deploy"
+description = "環境を指定してデプロイします（引数あり）"
+exec = "scripts/deploy.sh"
+args = ["staging", "production"]
+confirm = true
+
+# 備考:
+# - ユーザー設定: $XDG_CONFIG_HOME/gemini/labelka.toml
+# - プロジェクト設定: ./.gemini/labelka.toml

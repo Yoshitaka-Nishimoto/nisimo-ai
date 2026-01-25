@@ -1,0 +1,3 @@
+Line Login　を導入したいため、ngrokを止めmkcert＋自前ローカル証明書で、httpsでの運用を検討している。
+1.laravel12のlivewire kitのこのプロジェクトにmkcertをinstallして、serverを起動し、loginできるために必要な手順を教えてください。
+
